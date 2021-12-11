@@ -71,7 +71,7 @@
             },
             checkValidity: function (input) {
                 if(input.value.length < 3){
-                    this.addInvalidity('This input needs to be at least 3 characters long');
+                    this.addInvalidity('Minimal 3 karakter');
 
                     var element = document.querySelector('label[for="username"] li:nth-child(1)');
 
@@ -85,7 +85,7 @@
                 }
 
                 if(input.value.match(/[^a-zA-Z0-9]/g)){
-                    this.addInvalidity('only letters and numbers are allowed');
+                    this.addInvalidity('Hanya boleh berisi huruf dan angka (tidak ada karakter khusus)');
 
                     var element = document.querySelector('label[for="username"] li:nth-child(2)');
 
