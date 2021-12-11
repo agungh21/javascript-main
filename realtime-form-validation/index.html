@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>realtime form validation</title>
+    <style>
+        .input-requirements {
+        list-style: disc;
+        color: rgb(150,150,150);
+        }
+
+
+        .input-requirements li.invalid {
+            color: #e74c3c;
+        }
+        .input-requirements li.valid {
+            color: #2ecc71;
+        }
+
+        .input-requirements li.valid:after {
+            display: inline-block;
+            padding-left: 10px;
+            content: "\2713";
+        }
+
+        .input-requirements li.invalid:after {
+            display: inline-block;
+            padding-left: 10px;
+            content: "\2715";
+        }
+
+        /* Hide and show related .input-requirements when interacting with input */
+
+        input:not([type="submit"]) + .input-requirements {
+        overflow: hidden;
+        max-height: 0;
+        transition: max-height 1s ease-out;  
+        }
+
+        input:not([type="submit"]):hover + .input-requirements,
+        input:not([type="submit"]):focus + .input-requirements,
+        input:not([type="submit"]):active + .input-requirements {
+        max-height: 1000px; /* any large number (bigger then the .input-requirements list) */
+        transition: max-height 1s ease-in;
+        }
+
+    </style>
+</head>
+<body>
+    <label for="username">
+        <input type="text" placeholder="username" id="username" minlength="3" required>
+        <ul class="input-requirements">
+            <li>Minimal 3 karakter</li>
+            <li>Hanya boleh berisi huruf dan angka (tidak ada karakter khusus)</li>
+        </ul>
+    </label>
+
+    <script type="text/javascript">
+        function CustomValidation() {
+            this.invalidities = [];
+        }
+
+        CustomValidation.prototype = {
+            addInvalidity: function (message) {
+                this.invalidities.push(message);
+            },
+            getInvalidities: function () {
+                return this.invalidities.join('. \n');
+            },
+            checkValidity: function (input) {
+                if(input.value.length < 3){
+                    this.addInvalidity('This input needs to be at least 3 characters long');
+
+                    var element = document.querySelector('label[for="username"] li:nth-child(1)');
+
+                    element.classList.add('invalid');
+                    element.classList.remove('valid');
+                }else{
+                    var element = document.querySelector('label[for="username"] li:nth-child(1)');
+
+                    element.classList.remove('invalid');
+                    element.classList.add('valid');
+                }
+
+                if(input.value.match(/[^a-zA-Z0-9]/g)){
+                    this.addInvalidity('only letters and numbers are allowed');
+
+                    var element = document.querySelector('label[for="username"] li:nth-child(2)');
+
+                    element.classList.add('invalid');
+                    element.classList.remove('valid');
+                }else{
+                    var element = document.querySelector('label[for="username"] li:nth-child(2)');
+
+                    element.classList.remove('invalid');
+                    element.classList.add('valid');
+                }
+            }
+        };
+
+        var usernameInput = document.getElementById('username');
+
+        usernameInput.CustomValidation = new CustomValidation();
+
+        usernameInput.addEventListener('keyup', function () {
+            usernameInput.CustomValidation.checkValidity(this);
+        });
+    </script>
+</body>
+</html>
