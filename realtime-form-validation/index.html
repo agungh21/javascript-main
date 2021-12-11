@@ -60,6 +60,8 @@
     <script type="text/javascript">
         function CustomValidation() {
             this.invalidities = [];
+
+            this.validityChecks = [];
         }
 
         CustomValidation.prototype = {
@@ -70,39 +72,43 @@
                 return this.invalidities.join('. \n');
             },
             checkValidity: function (input) {
-                if(input.value.length < 3){
-                    this.addInvalidity('Minimal 3 karakter');
-
-                    var element = document.querySelector('label[for="username"] li:nth-child(1)');
-
-                    element.classList.add('invalid');
-                    element.classList.remove('valid');
-                }else{
-                    var element = document.querySelector('label[for="username"] li:nth-child(1)');
-
-                    element.classList.remove('invalid');
-                    element.classList.add('valid');
-                }
-
-                if(input.value.match(/[^a-zA-Z0-9]/g)){
-                    this.addInvalidity('Hanya boleh berisi huruf dan angka (tidak ada karakter khusus)');
-
-                    var element = document.querySelector('label[for="username"] li:nth-child(2)');
-
-                    element.classList.add('invalid');
-                    element.classList.remove('valid');
-                }else{
-                    var element = document.querySelector('label[for="username"] li:nth-child(2)');
-
-                    element.classList.remove('invalid');
-                    element.classList.add('valid');
+                for (var i = 0; i < validityChecks.length; i++) {
+                    var isInvalid = validityChecks[i].isInvalid(input);
+                    if(isInvalid){
+                        this.addInvalidity(validityChecks[i].invalidityMessage);
+                        validityChecks[i].element.classList.add('invalid');
+                        validityChecks[i].element.classList.remove('valid');
+                    }else{
+                        validityChecks[i].element.classList.remove('invalid');
+                        validityChecks[i].element.classList.add('valid');
+                    }
+                    
                 }
             }
         };
 
+        var usernameValidityChecks = [
+            {
+                isInvalid: function (input) {
+                    return input.value.length < 3;
+                },
+                invalidityMessage: 'Minimal 3 karakter',
+                element: document.querySelector('label[for="username"] .input-requirements li:nth-child(1)')
+            },
+            {
+                isInvalid:function(input){
+                    var illegalCharacters = input.value.match(/[^a-zA-Z0-9]/g);
+                    return illegalCharacters ? true : false;
+                },
+            invalidityMessage:'Hanya boleh berisi huruf dan angka (tidak ada karakter khusus)',
+            element: document.querySelector('label[for="username"] .input-requirements li:nth-child(2)')
+            }
+        ]
+
         var usernameInput = document.getElementById('username');
 
         usernameInput.CustomValidation = new CustomValidation();
+        usernameInput.CustomValidation.validityChecks = usernameValidityChecks;
 
         usernameInput.addEventListener('keyup', function () {
             usernameInput.CustomValidation.checkValidity(this);
