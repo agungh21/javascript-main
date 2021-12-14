@@ -1,0 +1,34 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400&display=swap");
+
+body {
+  text-align: center;
+  font-family: Poppins;
+}
+
+.wrapper {
+  width: 800px;
+  margin: 0 auto;
+}
+
+.warnning {
+  border: 1pt solid red;
+  margin: 5px auto;
+  width: 100%;
+  padding: 5pt;
+}
+
+.tombols {
+  margin: 25px;
+}
+
+button {
+  padding: 5px 50px;
+  font-size: 15pt;
+}
+
+input[type="text"] {
+  display: block;
+  margin: 5px auto;
+  width: 100%;
+  padding: 10px;
+}

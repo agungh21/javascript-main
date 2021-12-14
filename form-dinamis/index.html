@@ -4,42 +4,29 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <style>
-        input[type="text"]{
-            display: block;
-            margin: 10px;
-        }
-    </style>
+    <title>Form Dinamis</title>
+
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
     <div class="wrapper">
-        <div id="inputs">
-            <input type="text" name="inputs[]">
+        <h1>FORM DINAMIS</h1>
+        <div class="warnning">
+            <p>Cara Penggunaan : </p>
+            <p>Tekan tombol (+) untuk menambah form input</p>
+            <p>Tekan tombol (-) untuk mengurangi form input</p>
         </div>
-        <div class="ctrl">
+
+        <div class="tombols">
             <button id="tambah">+</button>
             <button id="kurang">-</button>
         </div>
-    </div>
-    <script type="text/javascript">
-        var inputs = document.getElementById("inputs");
-        var tambah = document.getElementById("tambah");
-        var kurang = document.getElementById("kurang");
-        
-        tambah.onclick = function(){
-            var newInput = document.createElement('input');
-            newInput.setAttribute('type', 'text');
-            newInput.setAttribute('name', 'input[]');
-            inputs.appendChild(newInput);
-        }
 
-        kurang.onclick = function(){
-            var inputTags = inputs.getElementsByTagName('input');
-            if(inputTags.length > 1){
-                inputs.removeChild(inputTags[(inputTags.length)=1]);
-            }
-        }
-        </script>
+        <div id="inputs">
+            <input type="text" name="inputs[]">
+        </div>
+    </div>
+
+    <script src="js/script.js"></script>
 </body>
 </html>
