@@ -15,7 +15,6 @@ function cariKataPanjang() {
   }
   let kata = input.split(" ");
   let katapanjang = "";
-  let katapendek = "";
 
   for (let k of kata) {
     if (k.length > katapanjang.length) {
