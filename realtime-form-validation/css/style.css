@@ -1,6 +1,29 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400&display=swap");
+
+body {
+  width: 100%;
+  font-family: Poppins;
+}
+
+h1 {
+  text-align: center;
+}
+
+.registration {
+  width: 50%;
+  margin: auto;
+}
+
+input[type="text"],
+[type="password"] {
+  width: 100%;
+  padding: 10px;
+}
+
 .input-requirements {
   list-style: disc;
   color: rgb(150, 150, 150);
+  font-size: 10pt;
 }
 
 .input-requirements li.invalid {
@@ -35,4 +58,13 @@ input:not([type="submit"]):focus + .input-requirements,
 input:not([type="submit"]):active + .input-requirements {
   max-height: 1000px; /* any large number (bigger then the .input-requirements list) */
   transition: max-height 1s ease-in;
+}
+
+.buttons {
+  margin-top: 20px;
+  text-align: center;
+}
+
+input[type="submit"] {
+  padding: 10px;
 }

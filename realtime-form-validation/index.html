@@ -12,7 +12,7 @@
     <form class="registration" id="registration">
         <h1>Registration Form</h1>
         <label for="username">
-            <input type="text" placeholder="username" id="username" minlength="3" required>
+            <input type="text" placeholder="Username" id="username" minlength="3" required>
             <ul class="input-requirements">
                 <li>Minimal 3 karakter</li>
                 <li>Hanya boleh berisi huruf dan angka (tidak boleh karakter khusus)</li>
@@ -20,9 +20,7 @@
         </label>
 
         <label for="password">
-            <span>Password</span>
-
-            <input type="password" id="password" maxlength="100" minlength="8" required>
+            <input type="password" id="password" placeholder="Password" maxlength="100" minlength="8" required>
 
             <ul class="input-requirements">
                 <li>Panjang minimal 8 karakter (dan kurang dari 100 karakter)</li>
@@ -34,13 +32,11 @@
         </label>
 
         <label for="password_repeat">
-            <span>Repeat Password</span>
-            <input type="password" id="password_repeat" maxlength="100" minlength="8" required>
+            <input type="password" id="password_repeat" placeholder="Password Repeat" maxlength="100" minlength="8" required>
         </label>
-
-        <br>
-
-        <input type="submit">
+        <div class="buttons">
+            <input type="submit" value="Register">
+        </div>
     </form>
 
    <script src="js/script.js"></script>
