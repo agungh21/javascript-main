@@ -3,7 +3,10 @@
 Lihat : https://agungh21.github.io/javascript-main/
 
 Javascript List :
-Form Dinamis
-Realtime Form Validation
-Cari Kata Panjang
-Countdown
+
+<ul>
+    <li>Form Dinamis</li>
+    <li>Realtime Form Validation</li>
+    <li>Cari Kata Panjang</li>
+    <li>Countdown</li>
+</ul>
